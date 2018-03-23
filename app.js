@@ -40,3 +40,6 @@ app.get('/', (req, res) => {
 app.post('/loginApp',(req,res)=> {
 res.send(req.body);
 });
+app.post('/sampleAPI',(req,res)=> {
+    res.send({'status': 'ok'});
+    });
