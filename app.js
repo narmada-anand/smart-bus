@@ -36,3 +36,7 @@ app.get('/', (req, res) => {
     res.send('Home Root');
 
 });
+
+app.post('/loginApp',(req,res)=> {
+res.send(req.body);
+});
