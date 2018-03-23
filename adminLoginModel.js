@@ -1,7 +1,7 @@
 const mongoose=require('mongoose');
 const Schema = mongoose.Schema;
 
-const parentlogin = new Schema({
+const adminlogin = new Schema({
 
     loginName:{
         type:String,
@@ -12,5 +12,5 @@ const parentlogin = new Schema({
         require:[true,'Password required']
     }
 });
- const parentLoginModel = mongoose.model('parentLogin',parentlogin);
- module.exports = parentLoginModel;
+ const adminLoginModel = mongoose.model('adminLogin',adminlogin);
+ module.exports = adminLoginModel;

@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const parentLoginModel = require('./parentLoginModel');
+const adminLoginModel = require('./adminLoginModel');
 const busDetailsModel = require('./busDetailsModel');
 const bodyParser = require('body-parser');
 const path = require('path');
@@ -35,6 +36,19 @@ app.get('/', (req, res) => {
 
     res.send('Home Root');
 
+});
+
+
+app.post('/adminLogin', (req, res) => {
+    console.log(req.body.loginName);
+    adminLoginModel.find({ 'loginName': req.body.loginName, 'password': req.body.password }).then((data) => {
+        console.log("xxx", data);
+        if (data.length > 0) {
+            res.send({ "Status": "success", "session": data });
+        }
+        else
+            res.send({ "Status": "failed" });
+    });
 });
 
 app.post('/loginApp',(req,res)=> {
