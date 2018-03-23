@@ -17,6 +17,66 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 
 /***/ }),
 
+/***/ "./src/app/admin.login/admin.login.component.css":
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/admin.login/admin.login.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div id=\"container\" class=\"container\">\n  <!-- <div class=\"row\"> -->\n  <h3 align=\"center\">\n    <span style=\"\n      border-bottom: 2px solid black;\n      padding: 2px;\">Admin Login</span>\n  </h3>\n  <form class=\"justify-content-center\" #loginDetails=\"ngForm\" (ngSubmit)=\"onLogin(loginDetails.value)\">\n    <div class=\"form-group\">\n      <label for=\"usrnme\">Login Name:</label>\n      <input type=\"email\" class=\"form-control\" id=\"usrnme\" name=\"loginName\" ngModel required>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"pwd\">Password:</label>\n      <input type=\"password\" class=\"form-control\" id=\"pwd\" name=\"password\" ngModel required>\n    </div>\n    <button class=\"btn btn-default\" type=\"submit\" [disabled]=\"!loginDetails.valid\">\n      <i class=\"fa fa-floppy-o\"></i>\n      Login\n    </button>\n    <button class=\"btn btn-default\" type=\"button\" (click)=\"resetClick(loginDetails)\">\n      <i class=\"fa fa-repeat\"></i>\n      Reset\n    </button>\n  </form>\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/admin.login/admin.login.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AdminLoginComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_service__ = __webpack_require__("./src/app/app.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var AdminLoginComponent = /** @class */ (function () {
+    function AdminLoginComponent() {
+    }
+    AdminLoginComponent.prototype.ngOnInit = function () {
+    };
+    AdminLoginComponent.prototype.onLogin = function (event) {
+        var that = this;
+    };
+    AdminLoginComponent.prototype.resetClick = function (data) {
+        if (data != null)
+            data.reset();
+    };
+    AdminLoginComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'app-admin.login',
+            template: __webpack_require__("./src/app/admin.login/admin.login.component.html"),
+            styles: [__webpack_require__("./src/app/admin.login/admin.login.component.css")],
+            providers: [__WEBPACK_IMPORTED_MODULE_1__app_service__["a" /* AppService */]]
+        }),
+        __metadata("design:paramtypes", [])
+    ], AdminLoginComponent);
+    return AdminLoginComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/app.component.css":
 /***/ (function(module, exports) {
 
@@ -128,12 +188,14 @@ var AppGuard = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pagenotfound_pagenotfound_component__ = __webpack_require__("./src/app/pagenotfound/pagenotfound.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__login_login_component__ = __webpack_require__("./src/app/login/login.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__parent_login_parent_login_component__ = __webpack_require__("./src/app/parent.login/parent.login.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__admin_login_admin_login_component__ = __webpack_require__("./src/app/admin.login/admin.login.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -153,7 +215,8 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* AppComponent */],
                 __WEBPACK_IMPORTED_MODULE_7__pagenotfound_pagenotfound_component__["a" /* PagenotfoundComponent */],
                 __WEBPACK_IMPORTED_MODULE_8__login_login_component__["a" /* LoginComponent */],
-                __WEBPACK_IMPORTED_MODULE_9__parent_login_parent_login_component__["a" /* ParentLoginComponent */]
+                __WEBPACK_IMPORTED_MODULE_9__parent_login_parent_login_component__["a" /* ParentLoginComponent */],
+                __WEBPACK_IMPORTED_MODULE_10__admin_login_admin_login_component__["a" /* AdminLoginComponent */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -180,6 +243,8 @@ var AppModule = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_login_login_component__ = __webpack_require__("./src/app/login/login.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_pagenotfound_pagenotfound_component__ = __webpack_require__("./src/app/pagenotfound/pagenotfound.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_parent_login_parent_login_component__ = __webpack_require__("./src/app/parent.login/parent.login.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_admin_login_admin_login_component__ = __webpack_require__("./src/app/admin.login/admin.login.component.ts");
+
 
 
 
@@ -197,6 +262,10 @@ var route = [
     {
         path: 'parentLogin',
         component: __WEBPACK_IMPORTED_MODULE_3__app_parent_login_parent_login_component__["a" /* ParentLoginComponent */]
+    },
+    {
+        path: 'adminLogin',
+        component: __WEBPACK_IMPORTED_MODULE_4__app_admin_login_admin_login_component__["a" /* AdminLoginComponent */]
     },
     {
         path: '**',
@@ -278,7 +347,9 @@ var LoginComponent = /** @class */ (function () {
     };
     LoginComponent.prototype.loginClick = function (event) {
         debugger;
-        if (event == 2)
+        if (event == 1)
+            this.router.navigate(['/adminLogin']);
+        else if (event == 2)
             this.router.navigate(['/parentLogin']);
     };
     LoginComponent = __decorate([
