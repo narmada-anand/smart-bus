@@ -41,10 +41,13 @@ app.get('/', (req, res) => {
 
 app.post('/adminLogin', (req, res) => {
     console.log(req.body.loginName);
-    var adminLoginModelf = new adminLoginModel(req.body).save().then((data) => {
-        if (data.password)
-            data.password = "******";
-        res.send({ "Status": "success", "Data": data });
+    adminLoginModel.find({ 'loginName': req.body.loginName, 'password': req.body.password }).then((data) => {
+        console.log("xxx", data);
+        if (data.length > 0) {
+            res.send({ "Status": "success", "session": data });
+        }
+        else
+            res.send({ "Status": "failed" });
     });
 });
 

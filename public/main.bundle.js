@@ -65,7 +65,7 @@ var AdminLoginComponent = /** @class */ (function () {
             debugger;
             if (data["Status"] == "success") {
                 sessionStorage.setItem("token", data["Data"]);
-                _this.router.navigate(['/dashboard']);
+                _this.router.navigate(['/busdetails']);
             }
             else
                 alert("Login failed....");
@@ -101,7 +101,7 @@ module.exports = "body {\r\n    margin: 0;\r\n    font-family: Arial, Helvetica,
 /***/ "./src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"topnav\" id=\"myTopnav\" style=\"margin: 10px auto;width: 99%;border: 2px solid #c3c0c0;border-radius: 5px;box-shadow: 1px 1px 15px grey;\">\n  <a  class=\"\" routerLink=\"home\">Home</a>\n  <a routerLink=\"contactUs\">Contact Us</a>\n  <a id=\"log\" routerLink={{route}}></a>    \n  <a href=\"javascript:void(0);\" style=\"font-size:15px;\" class=\"icon\" (click)=\"myFunction()\">&#9776;</a>\n</div>\n<!-- Begin page content -->\n<div class=\"container\">\n  <router-outlet></router-outlet>\n</div>\n"
+module.exports = "<div *ngIf=\"flagLogin\" class=\"topnav\" id=\"myTopnav\" style=\"margin: 10px auto;width: 99%;border: 2px solid #c3c0c0;border-radius: 5px;box-shadow: 1px 1px 15px grey;\">\n  <a routerLink=\"home\">Home</a>\n  <a routerLink=\"contactUs\">Contact Us</a>\n  <a routerLink=\"login\">Login</a>    \n  <a href=\"javascript:void(0);\" style=\"font-size:15px;\" class=\"icon\" (click)=\"myFunction()\">&#9776;</a>\n</div>\n<div *ngIf=\"!flagLogin\" class=\"topnav\" id=\"myTopnav\" style=\"margin: 10px auto;width: 99%;border: 2px solid #c3c0c0;border-radius: 5px;box-shadow: 1px 1px 15px grey;\">\n  <a routerLink=\"busdetails\">Add Driver</a>\n  <a routerLink=\"studentregstr\">Register Student</a>\n  <a routerLink=\"contactUs\">View Bus details</a>\n  <a routerLink=\"contactUs\">View Feedback</a>\n  <a routerLink=\"logout\">Log Out</a>    \n  <a href=\"javascript:void(0);\" style=\"font-size:15px;\" class=\"icon\" (click)=\"myFunction()\">&#9776;</a>\n</div>\n<!-- Begin page content -->\n<div class=\"container\">\n  <router-outlet></router-outlet>\n</div>\n"
 
 /***/ }),
 
@@ -121,17 +121,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var AppComponent = /** @class */ (function () {
     function AppComponent() {
         this.title = 'app';
-        this.route = "login";
+        this.flagLogin = true;
     }
     AppComponent.prototype.ngDoCheck = function () {
-        var login = document.getElementById('log');
         if (sessionStorage.getItem('token') == null) {
-            this.route = "login";
-            login.textContent = "Login";
+            this.flagLogin = true;
         }
         else {
-            this.route = "logout";
-            login.textContent = "Log Out";
+            this.flagLogin = false;
         }
     };
     AppComponent.prototype.myFunction = function () {
@@ -204,12 +201,18 @@ var AppGuard = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__login_login_component__ = __webpack_require__("./src/app/login/login.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__parent_login_parent_login_component__ = __webpack_require__("./src/app/parent.login/parent.login.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__admin_login_admin_login_component__ = __webpack_require__("./src/app/admin.login/admin.login.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__logout_logout_component__ = __webpack_require__("./src/app/logout/logout.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__bus_details_bus_details_component__ = __webpack_require__("./src/app/bus.details/bus.details.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__student_registration_student_registration_component__ = __webpack_require__("./src/app/student.registration/student.registration.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
+
 
 
 
@@ -232,7 +235,10 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_8__pagenotfound_pagenotfound_component__["a" /* PagenotfoundComponent */],
                 __WEBPACK_IMPORTED_MODULE_9__login_login_component__["a" /* LoginComponent */],
                 __WEBPACK_IMPORTED_MODULE_10__parent_login_parent_login_component__["a" /* ParentLoginComponent */],
-                __WEBPACK_IMPORTED_MODULE_11__admin_login_admin_login_component__["a" /* AdminLoginComponent */]
+                __WEBPACK_IMPORTED_MODULE_11__admin_login_admin_login_component__["a" /* AdminLoginComponent */],
+                __WEBPACK_IMPORTED_MODULE_12__logout_logout_component__["a" /* LogoutComponent */],
+                __WEBPACK_IMPORTED_MODULE_13__bus_details_bus_details_component__["a" /* BusDetailsComponent */],
+                __WEBPACK_IMPORTED_MODULE_14__student_registration_student_registration_component__["a" /* StudentRegistrationComponent */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -261,6 +267,12 @@ var AppModule = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_pagenotfound_pagenotfound_component__ = __webpack_require__("./src/app/pagenotfound/pagenotfound.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_parent_login_parent_login_component__ = __webpack_require__("./src/app/parent.login/parent.login.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_admin_login_admin_login_component__ = __webpack_require__("./src/app/admin.login/admin.login.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_logout_logout_component__ = __webpack_require__("./src/app/logout/logout.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_bus_details_bus_details_component__ = __webpack_require__("./src/app/bus.details/bus.details.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_student_registration_student_registration_component__ = __webpack_require__("./src/app/student.registration/student.registration.component.ts");
+
+
+
 
 
 
@@ -283,6 +295,18 @@ var route = [
     {
         path: 'adminLogin',
         component: __WEBPACK_IMPORTED_MODULE_4__app_admin_login_admin_login_component__["a" /* AdminLoginComponent */]
+    },
+    {
+        path: 'logout',
+        component: __WEBPACK_IMPORTED_MODULE_5__app_logout_logout_component__["a" /* LogoutComponent */]
+    },
+    {
+        path: 'busdetails',
+        component: __WEBPACK_IMPORTED_MODULE_6__app_bus_details_bus_details_component__["a" /* BusDetailsComponent */]
+    },
+    {
+        path: 'studentregstr',
+        component: __WEBPACK_IMPORTED_MODULE_7__app_student_registration_student_registration_component__["a" /* StudentRegistrationComponent */]
     },
     {
         path: '**',
@@ -317,14 +341,83 @@ var AppService = /** @class */ (function () {
         this.http = http;
     }
     AppService.prototype.login = function (data) {
-        // return this.http.post('http://localhost:5000/adminLogin', data);
-        return this.http.post('https://smart-bus.herokuapp.com/adminLogin', data);
+        return this.http.post('http://localhost:5000/adminLogin', data);
+        // return this.http.post('https://mean-app-anand.herokuapp.com/adminLogin', data);
     };
+    AppService.prototype.getsession = function () {
+        if (sessionStorage.getItem('token') != null)
+            return true;
+        else
+            return false;
+    };
+    ;
     AppService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]])
     ], AppService);
     return AppService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/bus.details/bus.details.component.css":
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/bus.details/bus.details.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div id=\"container\" class=\"container\">\n  <h3 align=\"center\">\n    <span style=\"\n      border-bottom: 2px solid black;\n      padding: 2px;\">Bus Details</span>\n  </h3>\n  <form class=\"justify-content-center\" #busDetails=\"ngForm\" (ngSubmit)=\"onClick(busDetails.value)\">\n    <div class=\"form-group\">\n      <label for=\"busnmbr\">Bus Number:</label>\n      <input type=\"number\" class=\"form-control\" name=\"busNumber\" ngModel required>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"dvrNme\">Driver Name: </label>\n      <input type=\"text\" class=\"form-control\" name=\"driverName\" ngModel required>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"nmb\">Phone Number:</label>\n      <input type=\"number\" class=\"form-control\" name=\"phoneNumber\" pattern=\"^\\d{10}$\" ngModel required>\n    </div>\n    <button class=\"btn btn-default\" type=\"submit\" [disabled]=\"!busDetails.valid\">\n      <i class=\"fa fa-floppy-o\"></i>\n      Submit\n    </button>\n    <button class=\"btn btn-default\" type=\"button\" (click)=\"resetClick(busDetails)\">\n      <i class=\"fa fa-repeat\"></i>\n      Reset\n    </button>\n  </form>\n</div>\n"
+
+/***/ }),
+
+/***/ "./src/app/bus.details/bus.details.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BusDetailsComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_service__ = __webpack_require__("./src/app/app.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var BusDetailsComponent = /** @class */ (function () {
+    function BusDetailsComponent(appService) {
+        this.appService = appService;
+    }
+    BusDetailsComponent.prototype.ngOnInit = function () {
+    };
+    BusDetailsComponent.prototype.onClick = function (event) {
+        debugger;
+        var that = this;
+    };
+    BusDetailsComponent.prototype.resetClick = function (data) {
+        if (data != null)
+            data.reset();
+    };
+    BusDetailsComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'app-bus.details',
+            template: __webpack_require__("./src/app/bus.details/bus.details.component.html"),
+            styles: [__webpack_require__("./src/app/bus.details/bus.details.component.css")],
+            providers: [__WEBPACK_IMPORTED_MODULE_1__app_service__["a" /* AppService */]]
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__app_service__["a" /* AppService */]])
+    ], BusDetailsComponent);
+    return BusDetailsComponent;
 }());
 
 
@@ -385,6 +478,66 @@ var LoginComponent = /** @class */ (function () {
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */]])
     ], LoginComponent);
     return LoginComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/logout/logout.component.css":
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/logout/logout.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  logout works!\n</p>\n"
+
+/***/ }),
+
+/***/ "./src/app/logout/logout.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LogoutComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_service__ = __webpack_require__("./src/app/app.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("./node_modules/@angular/router/esm5/router.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var LogoutComponent = /** @class */ (function () {
+    function LogoutComponent(appService, router, cdRef) {
+        this.appService = appService;
+        this.router = router;
+        this.cdRef = cdRef;
+    }
+    LogoutComponent.prototype.ngOnInit = function () {
+        sessionStorage.clear();
+        this.router.navigate(['/login']);
+    };
+    LogoutComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'app-logout',
+            template: __webpack_require__("./src/app/logout/logout.component.html"),
+            styles: [__webpack_require__("./src/app/logout/logout.component.css")]
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__app_service__["a" /* AppService */], __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* Router */], __WEBPACK_IMPORTED_MODULE_0__angular_core__["k" /* ChangeDetectorRef */]])
+    ], LogoutComponent);
+    return LogoutComponent;
 }());
 
 
@@ -499,6 +652,67 @@ var ParentLoginComponent = /** @class */ (function () {
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__app_service__["a" /* AppService */], __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* Router */]])
     ], ParentLoginComponent);
     return ParentLoginComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/student.registration/student.registration.component.css":
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/student.registration/student.registration.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div id=\"container\" class=\"container\">\n  <h3 align=\"center\">\n    <span style=\"\n      border-bottom: 2px solid black;\n      padding: 2px;\">Student Registration</span>\n  </h3>\n  <form class=\"justify-content-center\" #studentDetails=\"ngForm\" (ngSubmit)=\"onClick(studentDetails.value)\">\n    <div class=\"form-group\">\n      <label for=\"nme\">Name: </label>\n      <input type=\"text\" class=\"form-control\" name=\"studentName\" ngModel required>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"cls\">Class: </label>\n      <input type=\"text\" class=\"form-control\" name=\"class\" ngModel required>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"busnbr\">Bus No: </label>\n      <select>\n        <option value=\"\" class=\"form-control\" >bus1</option>\n        <option value=\"\" class=\"form-control\" >bus2</option>\n        <option value=\"\" class=\"form-control\" >bus3</option>\n        <option value=\"\" class=\"form-control\" >bus4</option>\n      </select>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"prntnme\">Parent Name: </label>\n      <input type=\"text\" class=\"form-control\" name=\"parentName\" ngModel required>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"prnteml\">Parent Email:</label>\n      <input type=\"email\" class=\"form-control\" name=\"parentEmail\" ngModel required>\n    </div>\n    <button class=\"btn btn-default\" type=\"submit\" [disabled]=\"!studentDetails.valid\">\n      <i class=\"fa fa-floppy-o\"></i>\n      Login\n    </button>\n    <button class=\"btn btn-default\" type=\"button\" (click)=\"resetClick(studentDetails)\">\n      <i class=\"fa fa-repeat\"></i>\n      Reset\n    </button>\n  </form>\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/student.registration/student.registration.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return StudentRegistrationComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_service__ = __webpack_require__("./src/app/app.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var StudentRegistrationComponent = /** @class */ (function () {
+    function StudentRegistrationComponent(appService) {
+        this.appService = appService;
+    }
+    StudentRegistrationComponent.prototype.ngOnInit = function () {
+    };
+    StudentRegistrationComponent.prototype.onClick = function (event) {
+        var that = this;
+    };
+    StudentRegistrationComponent.prototype.resetClick = function (data) {
+        if (data != null)
+            data.reset();
+    };
+    StudentRegistrationComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'app-student.registration',
+            template: __webpack_require__("./src/app/student.registration/student.registration.component.html"),
+            styles: [__webpack_require__("./src/app/student.registration/student.registration.component.css")],
+            providers: [__WEBPACK_IMPORTED_MODULE_1__app_service__["a" /* AppService */]]
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__app_service__["a" /* AppService */]])
+    ], StudentRegistrationComponent);
+    return StudentRegistrationComponent;
 }());
 
 
