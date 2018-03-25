@@ -12,5 +12,5 @@ const adminlogin = new Schema({
         require:[true,'Password required']
     }
 });
- const adminLoginModel = mongoose.model('adminLogin',adminlogin);
+ const adminLoginModel = mongoose.model('adminlogin',adminlogin);
  module.exports = adminLoginModel;

@@ -64,7 +64,7 @@ var AdminLoginComponent = /** @class */ (function () {
         this.appService.login(event).subscribe(function (data) {
             debugger;
             if (data["Status"] == "success") {
-                sessionStorage.setItem("token", data["session"][0]['loginName']);
+                sessionStorage.setItem("token", data["Data"]);
                 _this.router.navigate(['/dashboard']);
             }
             else
